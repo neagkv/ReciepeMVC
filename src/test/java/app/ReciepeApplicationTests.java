@@ -1,4 +1,4 @@
-package com.reciepe.catalog.reciepe;
+package app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

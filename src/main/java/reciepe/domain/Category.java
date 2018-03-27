@@ -1,14 +1,13 @@
 package reciepe.domain;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Kevin Neag
  */
 @Entity
-public class UnitOfMeasure {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +15,18 @@ public class UnitOfMeasure {
 
     private String description;
 
+    @ManyToMany
+    private Set<Recipe> recipe;
+
     public Long getId() {
         return id;
+    }
+    public Set<Recipe> getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Set<Recipe> recipe) {
+        this.recipe = recipe;
     }
 
     public void setId(Long id) {
