@@ -1,4 +1,4 @@
-package reciepe.domain;
+package com.reciepe.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,7 +23,14 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
-    public Ingredient() {
+    public Ingredient(String ripe_avocados, BigDecimal bigDecimal, UnitOfMeasure eachUom) {
+    }
+
+    public Ingredient(Long id, String description, BigDecimal amount, UnitOfMeasure uom) {
+        this.id = id;
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
     }
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
@@ -32,6 +39,8 @@ public class Ingredient {
         this.uom = uom;
         this.recipe = recipe;
     }
+
+
 
     public Long getId() {
         return id;

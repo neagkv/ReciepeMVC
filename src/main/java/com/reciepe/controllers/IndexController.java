@@ -1,15 +1,9 @@
-package reciepe.controllers;
+package com.reciepe.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import reciepe.domain.Category;
-import reciepe.domain.UnitOfMeasure;
-import reciepe.repos.CategoryRepo;
-import reciepe.repos.UnitOfMeasureRepo;
-import reciepe.service.RecipeServiceImpl;
-
-import java.util.Optional;
+import com.reciepe.service.RecipeServiceImpl;
 
 /**
  * @author Kevin Neag

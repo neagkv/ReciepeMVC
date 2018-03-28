@@ -1,4 +1,4 @@
-package reciepe.domain;
+package com.reciepe.domain;
 
 /**
  * @author Kevin Neag

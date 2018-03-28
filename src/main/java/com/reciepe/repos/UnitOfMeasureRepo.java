@@ -1,8 +1,7 @@
-package reciepe.repos;
+package com.reciepe.repos;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import reciepe.domain.UnitOfMeasure;
+import com.reciepe.domain.UnitOfMeasure;
 
 import java.util.Optional;
 

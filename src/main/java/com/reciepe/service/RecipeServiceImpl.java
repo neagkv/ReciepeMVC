@@ -1,8 +1,8 @@
-package reciepe.service;
+package com.reciepe.service;
 
 import org.springframework.stereotype.Service;
-import reciepe.domain.Recipe;
-import reciepe.repos.RecipeRepo;
+import com.reciepe.domain.Recipe;
+import com.reciepe.repos.RecipeRepo;
 
 import java.util.HashSet;
 import java.util.Set;

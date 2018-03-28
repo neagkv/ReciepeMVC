@@ -1,6 +1,6 @@
-package reciepe.service;
+package com.reciepe.service;
 
-import reciepe.domain.Recipe;
+import com.reciepe.domain.Recipe;
 
 import java.util.Set;
 

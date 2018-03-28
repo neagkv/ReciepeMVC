@@ -1,8 +1,7 @@
-package reciepe.repos;
+package com.reciepe.repos;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import reciepe.domain.Category;
+import com.reciepe.domain.Category;
 
 import java.util.Optional;
 

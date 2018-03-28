@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>reciepe</name>
+	<name>com.reciepe</name>
 	<description>A springboot web app that displays recipes</description>
 
 	<parent>

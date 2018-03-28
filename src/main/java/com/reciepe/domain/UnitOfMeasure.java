@@ -1,13 +1,12 @@
-package reciepe.domain;
+package com.reciepe.domain;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * @author Kevin Neag
  */
 @Entity
-public class Category {
+public class UnitOfMeasure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,18 +14,8 @@ public class Category {
 
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<Recipe> recipe;
-
     public Long getId() {
         return id;
-    }
-    public Set<Recipe> getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Set<Recipe> recipe) {
-        this.recipe = recipe;
     }
 
     public void setId(Long id) {
