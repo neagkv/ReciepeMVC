@@ -1,5 +1,6 @@
-package app;
+package com.reciepe;
 
+import com.reciepe.service.RecipeServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ReciepeApplicationTests {
+public class RecipeApplicationTests {
 
 	@Test
 	public void contextLoads() {
