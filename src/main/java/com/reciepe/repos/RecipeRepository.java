@@ -6,5 +6,5 @@ import com.reciepe.domain.Recipe;
 /**
  * @author Kevin Neag
  */
-public interface RecipeRepo extends CrudRepository<Recipe,Long> {
+public interface RecipeRepository extends CrudRepository<Recipe,Long> {
 }

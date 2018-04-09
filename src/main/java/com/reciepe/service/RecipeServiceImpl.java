@@ -3,7 +3,7 @@ package com.reciepe.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import com.reciepe.domain.Recipe;
-import com.reciepe.repos.RecipeRepo;
+import com.reciepe.repos.RecipeRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,9 +15,9 @@ import java.util.Set;
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
-    private final RecipeRepo recipeRepo;
+    private final RecipeRepository recipeRepo;
 
-    public RecipeServiceImpl(RecipeRepo recipeRepo) {
+    public RecipeServiceImpl(RecipeRepository recipeRepo) {
         this.recipeRepo = recipeRepo;
     }
 

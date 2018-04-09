@@ -1,7 +1,6 @@
 package com.reciepe.domain;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -41,5 +40,7 @@ public class Ingredient {
         this.uom = uom;
         this.recipe = recipe;
     }
+
+
 
 }

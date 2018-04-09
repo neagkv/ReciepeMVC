@@ -1,11 +1,15 @@
 package com.reciepe.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 /**
  * @author Kevin Neag
  */
+
+@Data
 @Entity
 public class Category {
 

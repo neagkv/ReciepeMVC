@@ -7,6 +7,8 @@ import javax.persistence.*;
 /**
  * @author Kevin Neag
  */
+
+@Data
 @Entity
 public class UnitOfMeasure {
 
