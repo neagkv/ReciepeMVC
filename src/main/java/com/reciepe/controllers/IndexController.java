@@ -1,10 +1,10 @@
 package com.reciepe.controllers;
 
+import com.reciepe.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.reciepe.service.RecipeServiceImpl;
 
 /**
  * @author Kevin Neag
@@ -13,17 +13,16 @@ import com.reciepe.service.RecipeServiceImpl;
 @Controller
 public class IndexController {
 
-    private RecipeServiceImpl recipeService;
+    private RecipeService recipeService;
 
-
-    public IndexController(RecipeServiceImpl recipeService) {
+    public IndexController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
     @RequestMapping({"","/","/index"})
     public String getIndex(Model model){
+        log.debug("Getting Index page");
         model.addAttribute("recipes",recipeService.getRecipe());
-        log.debug("Im the controller");
         return "index";
     }
 }

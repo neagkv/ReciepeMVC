@@ -1,6 +1,8 @@
 package com.reciepe.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -8,6 +10,7 @@ import java.math.BigDecimal;
  * @author Kevin Neag
  */
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 
@@ -23,6 +26,9 @@ public class Ingredient {
 
     @ManyToOne
     private Recipe recipe;
+
+    public Ingredient() {
+    }
 
     public Ingredient(String ripe_avocados, BigDecimal bigDecimal, UnitOfMeasure eachUom) {
     }
