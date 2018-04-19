@@ -1,36 +1,43 @@
 package com.reciepe.service;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+
 import com.reciepe.domain.Recipe;
 import com.reciepe.repos.RecipeRepository;
-
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
-
-/**
- * @author Kevin Neag
- */
 
 
 @Slf4j
 @Service
-public class RecipeServiceImpl implements RecipeService{
+public class RecipeServiceImpl implements RecipeService {
 
+    private final RecipeRepository recipeRepository;
 
-    private final RecipeRepository recipeRepo;
-
-    public RecipeServiceImpl(RecipeRepository recipeRepo) {
-        this.recipeRepo = recipeRepo;
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
     }
 
     @Override
-    public Set<Recipe> getRecipe() {
-        log.debug("Im the service");
+    public Set<Recipe> getRecipes() {
+        log.debug("I'm in the service");
+
         Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepo.findAll().iterator().forEachRemaining(recipeSet::add);
+        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
     }
 
+    @Override
+    public Recipe findById(long l) {
 
+        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe Not Found!");
+        }
+
+        return recipeOptional.get();
+    }
 }
