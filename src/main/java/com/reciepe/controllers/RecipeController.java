@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @author Kevin Neag
  */
-
-
 @Controller
 public class RecipeController {
 
@@ -30,3 +28,4 @@ public class RecipeController {
         return "recipe/show";
     }
 }
+
