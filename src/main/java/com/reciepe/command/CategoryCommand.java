@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CatergoryCommand {
+public class CategoryCommand {
 
     private Long id;
     private String description;
