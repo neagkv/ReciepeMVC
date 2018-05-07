@@ -1,12 +1,20 @@
 package com.reciepe.service;
 
+import com.reciepe.command.RecipeCommand;
+import com.reciepe.converters.RecipeCommandToRecipe;
+import com.reciepe.converters.RecipeToRecipeCommand;
 import com.reciepe.domain.Recipe;
 import com.reciepe.repos.RecipeRepository;
 import javafx.beans.binding.When;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -21,48 +29,42 @@ import static org.mockito.Mockito.*;
  */
 public class RecipeServiceImplTest {
 
-    RecipeServiceImpl recipeService;
+    @RunWith(SpringRunner.class)
+    @SpringBootTest
+    public class RecipeServiceIT {
 
-    @Mock
-    RecipeRepository recipeRepository;
+        public static final String NEW_DESCRIPTION = "New Description";
 
+        @Autowired
+        RecipeService recipeService;
 
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        @Autowired
+        RecipeRepository recipeRepository;
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
-    }
+        @Autowired
+        RecipeCommandToRecipe recipeCommandToRecipe;
 
-    @Test
-    public void getRecipeByIdTest() throws Exception {
-        Recipe recipe = new Recipe();
-        recipe.setId(1L);
-        Optional<Recipe> recipeOptional = Optional.of(recipe);
+        @Autowired
+        RecipeToRecipeCommand recipeToRecipeCommand;
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        @Transactional
+        @Test
+        public void testSaveOfDescription() throws Exception {
+            //given
+            Iterable<Recipe> recipes = recipeRepository.findAll();
+            Recipe testRecipe = recipes.iterator().next();
+            RecipeCommand testRecipeCommand = recipeToRecipeCommand.convert(testRecipe);
 
-        Recipe recipeReturned = recipeService.findById(1L);
+            //when
+            testRecipeCommand.setDescription(NEW_DESCRIPTION);
+            RecipeCommand savedRecipeCommand = recipeService.saveRecipeCommand(testRecipeCommand);
 
-        assertNotNull("Null recipe returned", recipeReturned);
-        verify(recipeRepository, times(1)).findById(anyLong());
-        verify(recipeRepository, never()).findAll();
-    }
-
-    @Test
-    public void getRecipesTest() throws Exception {
-
-        Recipe recipe = new Recipe();
-        HashSet receipesData = new HashSet();
-        receipesData.add(recipe);
-
-        when(recipeService.getRecipes()).thenReturn(receipesData);
-
-        Set<Recipe> recipes = recipeService.getRecipes();
-
-        assertEquals(recipes.size(), 1);
-        verify(recipeRepository, times(1)).findAll();
-        verify(recipeRepository, never()).findById(anyLong());
+            //then
+            assertEquals(NEW_DESCRIPTION, savedRecipeCommand.getDescription());
+            assertEquals(testRecipe.getId(), savedRecipeCommand.getId());
+            assertEquals(testRecipe.getCategories().size(), savedRecipeCommand.getCategories().size());
+            assertEquals(testRecipe.getIngredients().size(), savedRecipeCommand.getIngredients().size());
+        }
     }
 
 }
