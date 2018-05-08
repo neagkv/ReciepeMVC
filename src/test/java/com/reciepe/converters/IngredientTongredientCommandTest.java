@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Kevin Neag
@@ -35,9 +36,6 @@ public class IngredientTongredientCommandTest {
     @Test
     public void testNullConvert() throws Exception {
         assertNull(converter.convert(null));
-    }
-
-    private void assertNull(IngredientCommand convert) {
     }
 
     @Test

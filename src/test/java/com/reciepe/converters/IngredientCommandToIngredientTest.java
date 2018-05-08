@@ -11,12 +11,12 @@ import java.math.BigDecimal;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Kevin Neag
  */
 public class IngredientCommandToIngredientTest {
-
     public static final Recipe RECIPE = new Recipe();
     public static final BigDecimal AMOUNT = new BigDecimal("1");
     public static final String DESCRIPTION = "Cheeseburger";
@@ -33,9 +33,6 @@ public class IngredientCommandToIngredientTest {
     @Test
     public void testNullObject() throws Exception {
         assertNull(converter.convert(null));
-    }
-
-    private void assertNull(Ingredient convert) {
     }
 
     @Test
