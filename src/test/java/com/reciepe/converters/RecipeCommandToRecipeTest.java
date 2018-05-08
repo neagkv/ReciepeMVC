@@ -16,8 +16,8 @@ import static org.junit.Assert.assertNull;
 /**
  * @author Kevin Neag
  */
-public class RecipeCommandToRecipeTest {
 
+public class RecipeCommandToRecipeTest {
 
     public static final Long RECIPE_ID = 1L;
     public static final Integer COOK_TIME = Integer.valueOf("5");
@@ -92,7 +92,7 @@ public class RecipeCommandToRecipeTest {
         recipeCommand.getIngredients().add(ingredient2);
 
         //when
-        Recipe recipe  = converter.convert(recipeCommand);
+        Recipe recipe = converter.convert(recipeCommand);
 
         assertNotNull(recipe);
         assertEquals(RECIPE_ID, recipe.getId());

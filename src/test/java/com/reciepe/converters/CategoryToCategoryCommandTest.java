@@ -4,9 +4,8 @@ import com.reciepe.command.CategoryCommand;
 import com.reciepe.domain.Category;
 import org.junit.Before;
 import org.junit.Test;
-
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 /**

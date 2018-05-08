@@ -23,17 +23,26 @@ public class UnitOfMeasureRepositoryIT {
 
     @Autowired
     UnitOfMeasureRepository unitOfMeasureRepository;
+
     @Before
     public void setUp() throws Exception {
     }
 
     @Test
-    @DirtiesContext
     public void findByDescription() throws Exception {
 
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Cup");
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
-        assertEquals("Cup",unitOfMeasureOptional.get().getDescription());
+        assertEquals("Teaspoon", uomOptional.get().getDescription());
     }
+
+    @Test
+    public void findByDescriptionCup() throws Exception {
+
+        Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Cup");
+
+        assertEquals("Cup", uomOptional.get().getDescription());
+    }
+
 
 }

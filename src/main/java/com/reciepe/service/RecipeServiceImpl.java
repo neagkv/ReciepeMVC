@@ -8,6 +8,8 @@ import com.reciepe.domain.Recipe;
 import com.reciepe.repos.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -37,7 +39,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe findById(long l) {
+    public Recipe findById(Long l) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
@@ -49,12 +51,18 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
-        //Detacthed from hibernate context
-        Recipe detacthedRecipe = recipeCommandToRecipe.convert(command);
+    @Transactional
+    public RecipeCommand findCommandById(Long l) {
+        return recipeToRecipeCommand.convert(findById(l));
+    }
 
-        Recipe savedRecipe = recipeRepository.save(detacthedRecipe);
-        log.debug("saved recipe:" + savedRecipe.getId());
+    @Override
+    @Transactional
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
         return recipeToRecipeCommand.convert(savedRecipe);
     }
 }
