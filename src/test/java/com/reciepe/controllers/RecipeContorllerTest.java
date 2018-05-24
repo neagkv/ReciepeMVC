@@ -2,6 +2,7 @@ package com.reciepe.controllers;
 
 import com.reciepe.command.RecipeCommand;
 import com.reciepe.domain.Recipe;
+import com.reciepe.exceptions.NotFoundException;
 import com.reciepe.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,16 @@ public class RecipeContorllerTest {
         controller = new RecipeController(recipeService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
+    }
+
 
     @Test
     public void testGetRecipe() throws Exception {

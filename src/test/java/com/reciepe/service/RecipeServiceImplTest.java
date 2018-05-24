@@ -4,6 +4,7 @@ import com.reciepe.command.RecipeCommand;
 import com.reciepe.converters.RecipeCommandToRecipe;
 import com.reciepe.converters.RecipeToRecipeCommand;
 import com.reciepe.domain.Recipe;
+import com.reciepe.exceptions.NotFoundException;
 import com.reciepe.repos.RecipeRepository;
 import javafx.beans.binding.When;
 import org.junit.Before;
@@ -46,6 +47,19 @@ public class RecipeServiceImplTest {
 
         recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+
+        //should go boom
+    }
+
 
     @Test
     public void getRecipeByIdTest() throws Exception {
