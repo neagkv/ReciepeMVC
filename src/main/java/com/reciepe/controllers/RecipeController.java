@@ -1,11 +1,9 @@
 package com.reciepe.controllers;
 
 import com.reciepe.command.RecipeCommand;
-import com.reciepe.domain.Recipe;
 import com.reciepe.exceptions.NotFoundException;
 import com.reciepe.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * @author Kevin Neag
  */
+
 @Slf4j
 @Controller
 public class RecipeController {
@@ -72,8 +71,24 @@ public class RecipeController {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("404error");
+
         modelAndView.addObject("exception", exception);
 
+        return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView handleNumberFormat(Exception exception){
+
+        log.error("Handling format exception");
+        log.error(exception.getMessage());
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("400error");
+
+        modelAndView.addObject("exception", exception);
 
         return modelAndView;
     }
