@@ -1,5 +1,5 @@
 ## Use to run mysql db docker image, optional if you're not using a local mysqldb
-# docker run --name mysqldb -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql
+# docker run --name mysqldb -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql:5.7
 
 # connect to mysql and run as root user
 #Create Databases
